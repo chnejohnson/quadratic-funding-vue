@@ -1,13 +1,13 @@
 <template>
   <div class="flex p-5">
-    <div class="w-1/2 border-2 border-gray-100 p-5">
+    <div class="w-1/2 border-2 border-gray-100 p-5 mr-2">
       <p>MATCH AMOUNT</p>
       <input
         v-model="matchAmount"
         type="number"
       />
     </div>
-    <div class="w-1/2 border-2 border-gray-100 p-5">
+    <div class="w-1/2 border-2 border-gray-100 p-5 ml-2">
       <p>NUMBER OF PROJECTS</p>
       <p class="text-xl">{{ grantsNum }}</p>
     </div>
@@ -49,12 +49,19 @@
             <td class="w-full max-w-sm lg:w-auto p-3 text-gray-800 border border-b block lg:table-cell relative lg:static">
               <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Funding</span>
               <div>
-                <span>
-                  <tag />
-                  <tag />
+                <span
+                  v-for="(funding,j) in grant.funding"
+                  :key="j"
+                >
+                  <tag
+                    :amount="funding"
+                    @remove="removeFunding(i, j)"
+                  />
                 </span>
 
                 <input
+                  v-model="grant.fundingInput"
+                  @keyup.enter="addFunding(i, grant.fundingInput)"
                   type="text"
                   class="inline-block w-1/2 appearance-none block bg-white text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                   placeholder="Add a contribution and press Enter"
@@ -96,25 +103,54 @@ export default defineComponent({
   setup() {
     const matchAmount = ref(0);
     const grants = ref([
-      { funding: [], fundingAmount: 0, match: 0 },
-      { funding: [], fundingAmount: 0, match: 0 },
-      { funding: [], fundingAmount: 0, match: 0 },
-      { funding: [], fundingAmount: 0, match: 0 },
+      { funding: [1], fundingAmount: 0, match: 0, fundingInput: "" },
+      { funding: [32, 32], fundingAmount: 0, match: 0, fundingInput: "" },
+      { funding: [], fundingAmount: 0, match: 0, fundingInput: "" },
+      { funding: [], fundingAmount: 0, match: 0, fundingInput: "" },
     ]);
+
+    const removeFunding = (grantIndex: number, fundingIndex: number) => {
+      grants.value[grantIndex].funding = grants.value[
+        grantIndex
+      ].funding.filter((_, i) => i !== fundingIndex);
+    };
+
+    const addFunding = (grantIndex: number, fundingInput: string) => {
+      if (Number(fundingInput) === NaN || !Number(fundingInput)) {
+        grants.value[grantIndex].fundingInput = "";
+        return;
+      }
+      grants.value[grantIndex].funding.push(Number(fundingInput));
+      grants.value[grantIndex].fundingInput = "";
+    };
 
     const grantsNum = computed(() => grants.value.length);
 
     const addGrant = () => {
-      grants.value.push({ funding: [], fundingAmount: 0, match: 0 });
+      grants.value.push({
+        funding: [],
+        fundingAmount: 0,
+        match: 0,
+        fundingInput: "",
+      });
     };
 
-    const removeGrant = (index: number) => {
-      grants.value = grants.value.filter((g, i) => i !== index);
+    const removeGrant = (grantIndex: number) => {
+      grants.value = grants.value.filter((g, i) => i !== grantIndex);
     };
 
     const copyURL = () => {};
 
-    return { grants, grantsNum, matchAmount, addGrant, copyURL, removeGrant };
+    return {
+      grants,
+      grantsNum,
+      matchAmount,
+      addGrant,
+      copyURL,
+      removeGrant,
+      addFunding,
+      removeFunding,
+    };
   },
 });
 </script>

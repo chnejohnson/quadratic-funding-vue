@@ -3,8 +3,13 @@
     <span
       class="ml-2 mr-1 leading-relaxed truncate max-w-xs px-1"
       x-text="tag"
-    >tag</span>
-    <button class="w-6 h-8 inline-block align-middle text-gray-500 bg-blue-200 focus:outline-none">
+    >{{ amount }}</span>
+
+    <!-- remove button -->
+    <button
+      @click="remove"
+      class="w-6 h-8 inline-block align-middle text-gray-500 bg-blue-200 focus:outline-none"
+    >
       <svg
         class="w-6 h-6 fill-current mx-auto"
         xmlns="http://www.w3.org/2000/svg"
@@ -18,3 +23,18 @@
     </button>
   </div>
 </template>
+
+<script>
+export default {
+  props: {
+    amount: Number,
+  },
+  emits: ["remove"],
+  setup(props, { emit }) {
+    const remove = () => {
+      emit("remove");
+    };
+    return { remove };
+  },
+};
+</script>
