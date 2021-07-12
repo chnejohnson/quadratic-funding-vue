@@ -9,7 +9,7 @@
     </div>
     <div class="w-1/2 border-2 border-gray-100 p-5">
       <p>NUMBER OF PROJECTS</p>
-      <p></p>
+      <p class="text-xl">{{ grantsNum }}</p>
     </div>
   </div>
 
@@ -20,19 +20,17 @@
       <table class="border-collapse w-full my-5">
         <thead>
           <tr>
-            <th class="table-col w-1">Remove</th>
-            <th class="table-col">Grant</th>
-            <th class="table-col">Funding</th>
-            <th class="table-col">Funded Amount</th>
-            <th class="table-col">Match Amount</th>
+            <th class="w-1 p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Remove</th>
+            <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Grant</th>
+            <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Funding</th>
+            <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Funded Amount</th>
+            <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Match Amount</th>
           </tr>
         </thead>
         <tbody>
           <tr
             v-for="(grant, i) in grants"
-            :key="grant.id"
-            :data-id="grant.id"
-            :data-created="grant.createdAt"
+            :key="i"
             class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0"
           >
             <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
@@ -60,9 +58,8 @@
                   type="text"
                   class="inline-block w-1/2 appearance-none block bg-white text-gray-700 border border-gray-200 rounded py-2 px-4 leading-tight focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                   placeholder="Add a contribution and press Enter"
-                >
+                />
               </div>
-
             </td>
             <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
               <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Funded Amount</span>
@@ -105,6 +102,8 @@ export default defineComponent({
       { funding: [], fundingAmount: 0, match: 0 },
     ]);
 
+    const grantsNum = computed(() => grants.value.length);
+
     const addGrant = () => {
       grants.value.push({ funding: [], fundingAmount: 0, match: 0 });
     };
@@ -115,14 +114,7 @@ export default defineComponent({
 
     const copyURL = () => {};
 
-    return { grants, matchAmount, addGrant, copyURL, removeGrant };
+    return { grants, grantsNum, matchAmount, addGrant, copyURL, removeGrant };
   },
 });
 </script>
-
-<style scoped>
-.table-col {
-  @apply p-3 font-bold uppercase bg-gray-200 text-gray-600
-    border border-gray-300 hidden lg:table-cell;
-}
-</style>
