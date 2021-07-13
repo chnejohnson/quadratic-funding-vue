@@ -155,7 +155,7 @@ export default defineComponent({
     };
 
     const addFunding = (grantIndex: number, fundingInput: string) => {
-      if (Number(fundingInput) === NaN || !Number(fundingInput)) {
+      if (!Number(fundingInput)) {
         fundingInputs.value[grantIndex] = "";
         return;
       }
