@@ -3,7 +3,7 @@
     <span
       class="ml-2 mr-1 leading-relaxed truncate max-w-xs px-1"
       x-text="tag"
-    >{{ amount }}</span>
+    >${{ amount }}</span>
 
     <!-- remove button -->
     <button
