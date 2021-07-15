@@ -95,10 +95,13 @@
       </div>
     </div>
   </div>
+
+  <Footer />
 </template>
 
 <script lang="ts">
 import { ref, computed, defineComponent, watch } from "vue";
+import Footer from "./Footer.vue";
 import IconTrash from "./IconTrash.vue";
 import Tag from "./Tag.vue";
 
@@ -109,7 +112,7 @@ interface Grant {
 }
 
 export default defineComponent({
-  components: { IconTrash, Tag },
+  components: { IconTrash, Tag, Footer },
   setup() {
     const totalMatch = ref(1000);
     const grants = ref<Grant[]>([
