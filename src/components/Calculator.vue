@@ -1,7 +1,9 @@
 <template>
+  <p class="text-gray-700 font-bold text-center text-3xl p-8">平方募資法 Quadratic Funding</p>
+
   <div class="flex p-5">
     <div class="w-1/2 border-2 border-gray-100 p-5 mr-2">
-      <p>總配對基金</p>
+      <p>資金池總額</p>
       <input
         class="text-xl appearance-none block w-4/5 bg-white text-gray-700 border border-gray-200 rounded p-1 leading-tight focus:outline-none"
         v-model="totalMatch"
@@ -16,7 +18,7 @@
 
   <div class="px-5">
     <div class="mx-auto box-border bg-white border-2 border-gray-100 shadow rounded-lg p-5">
-      <h1 class="text-3xl">專案</h1>
+      <h1 class="text-3xl">專案列表</h1>
 
       <table class="border-collapse w-full my-5">
         <thead>
@@ -25,7 +27,7 @@
             <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">專案</th>
             <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">捐款</th>
             <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">捐款總額</th>
-            <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">配對基金</th>
+            <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell">配對資金</th>
           </tr>
         </thead>
         <tbody>
@@ -77,7 +79,7 @@
 
             <!-- Match Amount -->
             <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b text-center block lg:table-cell relative lg:static">
-              <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">配對數量</span>
+              <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">配對資金</span>
               <p>$ {{ grant.match.toFixed(2) }}</p>
             </td>
           </tr>

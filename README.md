@@ -1,27 +1,24 @@
-# Vue 3 + Typescript + Vite
+# 平方募資法 Quadratic Funding
 
-This template should help get you started developing with Vue 3 and Typescript in Vite.
+平方募資法是一種機制，為了解決公共財的供給誘因不足，以民主的方式分配由政府、企業或慈善家所提供的資金，以此激勵社會產生更多的公共財。
 
-## Recommended IDE Setup
+### 何謂公共財？
+- 免費且可供多人使用，不會因為多一人消費，就減少其他人消費此產品的效用
+- 常有搭便車的問題，導致沒有人想提供，傳統的作法是由政府作為公共財的提供者，而其資金來源是以向人民課稅的方式
+- 例如：開源軟體、在網路上分享的知識
 
-[VSCode](https://code.visualstudio.com/) + [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur). Make sure to enable `vetur.experimental.templateInterpolationService` in settings!
 
-### If Using `<script setup>`
+### 募資方式
+- 平方募資法將公共財的募資分成兩個部分：
+1. 個人直接「點對點」捐款給專案
+2. 由政府、企業或慈善家所贊助的「資金池」，依照特定公式分配補助給專案。
+- 來源：[Liberal Radicalism: A Flexible Design For Philanthropic Matching Funds](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3243656)
 
-[`<script setup>`](https://github.com/vuejs/rfcs/pull/227) is a feature that is currently in RFC stage. To get proper IDE support for the syntax, use [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) instead of Vetur (and disable Vetur).
+### 例子
+- [Gitcoin Grants](https://gitcoin.co/grants/)
+- [clr.fund](https://clr.fund/#/)
 
-## Type Support For `.vue` Imports in TS
-
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can use the following:
-
-### If Using Volar
-
-Run `Volar: Switch TS Plugin on/off` from VSCode command palette.
-
-### If Using Vetur
-
-1. Install and add `@vuedx/typescript-plugin-vue` to the [plugins section](https://www.typescriptlang.org/tsconfig#plugins) in `tsconfig.json`
-2. Delete `src/shims-vue.d.ts` as it is no longer needed to provide module info to Typescript
-3. Open `src/main.ts` in VSCode
-4. Open the VSCode command palette
-5. Search and run "Select TypeScript version" -> "Use workspace version"
+### 缺點與改善
+- 假帳號 sybil attack
+- 共謀 collusion
+- 更多請參閱： [Vitalik 對歷屆 Gitcoin Grants 的分析](https://vitalik.ca/categories/gitcoin.html)

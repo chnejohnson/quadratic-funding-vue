@@ -4,9 +4,6 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
 }
 
 html.dark {
